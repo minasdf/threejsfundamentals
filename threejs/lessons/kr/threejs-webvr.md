@@ -25,7 +25,11 @@ WebXR API. [the article on setting up](threejs-setup.html)에 언급된 서버
 [Servez](https://greggman.github.io/servez)에는 https를 사용할 수 있는 옵션이 있습니다.
 확인 후 서버를 시작합니다.
 
-<div class="threejs_center"><img src="resources/images/servez-https.png" class="nobg" style="width: 912px;"></div>
+<div class="threejs_center"><img src="../resources/images/servez-https.png" class="nobg" style="width: 912px;"></div>
+
+여기까지
+
+
 
 The note the URLs. You need the one that is your computer's local ipaddress.
 It will usually start with `192`, `172` or `10`. Type that full address, including the `https://` part
