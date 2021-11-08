@@ -2,22 +2,15 @@ Title: Three.js VR
 Description: 가상현실을 Three.js로 사용하는 방법.
 TOC: VR - 기본 사항
 
-가상현실 앱을 3.js로 만드는 것은 꽤 간단하다. 당신은 기본적으로 단지 말할 필요가 있습니다
-WebXR을 사용할 3.js. WebXR에 대해 몇 가지 생각해 보면
-명확해야 합니다. 카메라가 가리키는 방향이 VR 시스템에 의해 제공됩니다.
-사용자가 방향을 선택하기 위해 고개를 돌리기 때문에 그 자체입니다. 비슷하게
-시야와 측면은 각 시스템 이후 VR 시스템에 의해 제공될 것이다.
-의 시야와 디스플레이 측면이 다릅니다.
+가상현실 앱을 three.js로 만드는 것은 매우 기본적으로 three.js에게 WedXR을 사용할 것이라 알리기만 하면된다. WedXR에 몇가지 사항을 명확하게 해야 한다. 이를 생각하여 보도록하자. 카메라가 가리키는 방향은 향하고 있는지 VR시스템에서 제공한다. 사용자가 머리를 돌려 보는 방향을 선택하기 때문이다. 비슷하게 각 시스템 이후 VR 시스템에서 시야와 화면비가 제공됩니다. (각 시스템은 시야와 디스플레이 측면이 다르다)
 
-[making a responsive webpage](threejs-responsive.html)에 있는 기사의 예를 들어 보겠습니다.
-가상현실을 지원하게 합니다.
+[반응형 웹페이지 만들기](threejs-responsive.html) 예시를 통하여 VR을 지원하도록 만들어 보겠습니다.
 
-시작하기 전에 안드로이드와 같은 VR 지원 장치가 필요합니다.
-스마트폰, 구글 데이드림, 오큘러스 고, 오큘러스 리프트, 바이브, 삼성 기어 VR,
-[WebXR browser](https://apps.apple.com/us/app/webxr-viewer/id1295998056)가 설치된 아이폰.
+시작하기 전에 안드로이드 스마트폰, 구글 데이드림, 오큘러스 고, 오큘러스 리프트, 바이브,
+삼성 기어 VR, [WebXR browser](https://apps.apple.com/us/app/webxr-viewer/id1295998056)가 설치된 아이폰과 같은 VR 지원 장치가 필요합니다.
 
 다음으로, 로컬에서 실행 중인 경우 다음과 같은 간단한 웹 서버를 실행해야 합니다.
-[the article on setting up](threejs-setup.html)에 실려 있다.
+[the article on setting up](threejs-setup.html) 참조.
 
 VR을 보는 데 사용하는 장치가 실행 중인 컴퓨터와 다른 경우
 https를 통해 웹 페이지를 서비스해야 합니다. 그렇지 않으면 브라우저에서 사용을 허용하지 않습니다.
@@ -27,41 +20,32 @@ WebXR API. [the article on setting up](threejs-setup.html)에 언급된 서버
 
 <div class="threejs_center"><img src="../resources/images/servez-https.png" class="nobg" style="width: 912px;"></div>
 
-여기까지
+URL을 기록해 두십시오. 컴퓨터의 로컬 IP 주소가 필요합니다. 일반적으로 `192`, `172` 또는 `10`으로 시작합니다.  `https://` 부분을 포함한 전체 주소를 입력하세요.
+
+VR 기기의 브라우저로 이동합니다. NOTE: 작업 컴퓨터와 VR 장치는 동일한 로컬 네트워크에 있어야 합니다.
+또는 WiFi이고 아마도 홈 네트워크에 있어야 할것입니다. NOTE: 많은 카페에서 이러한 방법으로 기계 대 기계 연결.
 
 
-
-The note the URLs. You need the one that is your computer's local ipaddress.
-It will usually start with `192`, `172` or `10`. Type that full address, including the `https://` part
-into your VR device's browser. Note: Your computer and your VR device need to be on the same local network
-or WiFi and you probably need to be on a home network. note: Many cafes are setup to disallow this kind of
-machine to machine connection.
-
-You'll be greeted with an error something like the one below. Click "advanced" and then click
-*proceed*.
+아래와 같은 오류 메시지가 표시됩니다. "고급(advanced)"을 클릭한 다음 *진행(proceed)* 을 클릭한다.
 
 <div class="threejs_center"><img src="resources/images/https-warning.gif"></div>
 
-Now you can run your examples.
+이제 예제를 실행할 수 있습니다.
 
-If you're really going to do WebVR development another thing you should learn about is
-[remote debugging](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/)
-so that you can see console warnings, errors, and of course actually 
-[debug your code](threejs-debugging-javascript.html).
+실제로 WebVR 개발을 하려는 경우 배워야 할 또 다른 사항은 
+[원격 디버깅(remote debugging)](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/) 이다.
+이를 통해 콘솔 경보, 오류, 실제로 [코드 디버그(debug your code)](threejs-debugging-javascript.html)가  가능하다.
 
-If you just want to see the code work below you can just run the code from
-this site.
+아래 코드가 작동하는 것을 보고 싶다면 이 사이트에서 코드를 실행할 수 있습니다.
 
-The first thing we need to do is include the VR support after
-including three.js
+가장 먼저 해야 할 일은 three.js를 포함시킨 후 VR 지원을 포함하는 것입니다.
 
 ```js
 import * as THREE from './resources/three/r132/build/three.module.js';
 +import {VRButton} from './resources/threejs/r132/examples/jsm/webxr/VRButton.js';
 ```
 
-Then we need to enable three.js's WebXR support and add its
-VR button to our page
+이후 three.js's WebXR 지원을 활성화 하며, 그것의 VR button을 페이지에 추가하여 주어야한다.
 
 ```js
 function main() {
@@ -71,10 +55,9 @@ function main() {
 +  document.body.appendChild(VRButton.createButton(renderer));
 ```
 
-We need to let three.js run our render loop. Until now we have used a
-`requestAnimationFrame` loop but to support VR we need to let three.js handle
-our render loop for us. We can do that by calling
-`WebGLRenderer.setAnimationLoop` and passing a function to call for the loop.
+three.js가 렌더 루프를 실행하도록 해야 합니다. 지금까지 우리는 
+`requestAnimationFrame`loop 를 사용하였다. 하지만 VR을 지원하기 위해서 우리는 three.js가 우리의 render loop를 관리할 수 있도록 해야한다. 이 과정을 
+`WebGLRenderer.setAnimationLoop`를 호출 및  루프를 호출하는 함수를 전달하여 진행 가능하다.
 
 ```js
 function render(time) {
@@ -102,15 +85,15 @@ function render(time) {
 +renderer.setAnimationLoop(render);
 ```
 
-There is one more detail. We should probably set a camera height
-that's kind of average for a standing user.
+세부 사항이 하나 더 있습니다. 우리는 아마 카메라 높이를 설정해야 합니다.
+예로는 서 있는 사용자의 평균키 입니다.
 
 ```js
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 +camera.position.set(0, 1.6, 0);
 ```
 
-and move the cubes up to be in front of the camera
+큐브를 카메라 앞으로 이동합니다.
 
 ```js
 const cube = new THREE.Mesh(geometry, material);
@@ -121,25 +104,23 @@ cube.position.x = x;
 +cube.position.z = -2;
 ```
 
-We set them to `z = -2` since the camera will now be at `z = 0` and
-camera defaults to looking down the -z axis.
+카메라가  `z = 0` 에 있고 카메라는 -z축을 바라보기 때문에 우리는  `z = -2`에  배치 시켰습니다(cude)
 
-This brings up an extremely important point. **Units in VR are in meters**.
-In other words **One Unit = One Meter**. This means the camera is 1.6 meters above 0.
-The cube's centers are 2 meters in front of the camera. Each cube
-is 1x1x1 meter large. This is important because VR needs to adjust things to the
-user *in the real world*. That means we need the units used in three.js to match
-the user's own movements.
 
-And with that we should get 3 spinning cubes in front
-of the camera with a button to enter VR.
+이것은 매우 중요한 점을 제시합니다. **Units in VR are in meters**.
+다른 말로  **One Unit = One Meter**. 이것은 카메라가 0보다 1.6미터 위에 있음을 의미합니다.
+큐브의 중심은 카메라 앞에서 2미터입니다. 각 큐브
+1x1x1미터 크기입니다. 이것은 VR이 *실제 세계* 에 사용자에 반응하여 사물을 조정해야 하기 때문에 중요합니다. 즉 사용자의 움직임과 VR에서의 움직임을 매치 시켜줄 단위가 필요합니다.
+
+그리고 그것으로(단위) 우리는 앞으로 3개의 회전하는 큐브와 VR에 들어갈 버튼 을 카메라 앞에 가져와야 합니다.
 
 {{{example url="../threejs-webvr-basic.html" }}}
 
-I find that VR works better if we have something surrounding the camera like
-room for reference so let's add a simple grid cubemap like we covered in
-[the article on backgrounds](threejs-backgrounds.html). We'll just use the same grid
-texture for each side of the cube which will give as a grid room.
+
+카메라 주변에 방(참조할 수 있는 공간)과 같은 감싸는 것이 있으면 VR이 더 잘 작동합니다. 따라서  과거 [the article on backgrounds](threejs-backgrounds.html)에서 진행한 것과 유사하게 간단한 그리드 큐브맵을 추가해 보겠습니다.
+
+우리는 같은 그리드를 사용할 것입니다
+그리드 룸으로 제공할 큐브의 각 면에 대한 텍스처입니다.
 
 ```js
 const scene = new THREE.Scene();
@@ -157,106 +138,105 @@ const scene = new THREE.Scene();
 +}
 ```
 
-That's better.
+더욱 나아진것을 확인 가능합니다.
 
 {{{example url="../threejs-webvr-basic-w-background.html" }}}
 
-Note: To actually see VR you will need a WebXR compatible device.
-I believe most Android Phones can support WebXR using Chrome or Firefox.
-For iOS you might be able to use this [WebXR App](https://apps.apple.com/us/app/webxr-viewer/id1295998056)
-though in general WebXR support on iOS is unsupported as of May 2019.
+Note: VR을 실제로 보려면 WebXR 호환 장치가 필요합니다.
+대부분의 Android 휴대폰은 Chrome 또는 Firefox를 사용하여 WebXR을 지원 합니다.
+iOS의 경우 [WebXR App](https://apps.apple.com/us/app/webxr-viewer/id1295998056)를 참조 하세요.
+iOS에서 일반적으로 WebXR 지원은 2019년 5월 현재 지원되지 않습니다.
 
-To use WebXR on Android or iPhone you'll need a *VR Headset*
-for phones. You can get them for anywhere from $5 for one made of cardboard
-to $100. Unfortunately I don't know which ones to recommend. I've purchased
-6 of them over the years and they are all of varying quality. I've
-never paid more than about $25.
 
-Just to mention some of the issues
+Android 또는 iPhone에서 WebXR을 사용하려면 *VR 헤드셋*이 필요합니다.
+전화용. 골판지로 만든 1개에 5달러부터 어디에서나 구입할 수 있습니다.
+100달러로. 불행히도 어떤 것을 추천해야 할지 모르겠습니다. 나는 구매했다
+그 중 6개는 수년에 걸쳐 생산되었으며 모두 품질이 다릅니다. 나는
+약 $25 이상을 지불한 적이 없습니다.
 
-1. Do they fit your phone
+몇 가지 문제만 언급하자면(VR 헤드셋)
 
-   Phones come in a variety of sizes and so the VR headsets need to match.
-   Many headsets claim to match a large variety of sizes. My experience
-   is the more sizes they match the worse they actually are since instead
-   of being designed for a specific size they have to make compromises
-   to match more sizes. Unfortunately multi-size headsets are the most common type.
+1. 휴대전화에 맞습니까?
 
-2. Can they focus for your face
+   전화기는 다양한 크기로 제공되므로 VR 헤드셋이 일치해야 합니다.
+   많은 헤드셋이 다양한 크기와 일치한다고 주장합니다. 내 경험
+   더 많은 크기가 일치할수록 실제로 더 나빠집니다.
+   특정 크기에 맞게 설계되어 타협해야 합니다.
+   더 많은 크기를 맞추기 위해. 불행히도 다중 크기 헤드셋이 가장 일반적인 유형입니다.
 
-   Some devices have more adjustments than others. Generally there
-   are at most 2 adjustments. How far the lenses are from your eyes
-   and how far apart the lenses are.
+2. 당신의 얼굴에 집중할 수 있습니까?
 
-3. Are they too reflective
+   일부 장치에는 다른 장치보다 더 많은 조정이 있습니다. 일반적으로 거기
+   최대 2개의 조정입니다. 렌즈가 눈에서 얼마나 멀리 떨어져 있는지
+   그리고 렌즈가 얼마나 멀리 떨어져 있는지.
 
-   Many headsets of a cone of plastic from your eye to the phone.
-   If that plastic is shinny or reflective then it will act like
-   a mirror reflecting the screen and be very distracting.
+3. 너무 반사적인가요?
 
-   Few if any of the reviews seem to cover this issue.
+   당신의 눈에서 전화까지 플라스틱 원뿔의 많은 헤드셋.
+   플라스틱이 반짝이거나 반사되면 다음과 같이 작동합니다.
+   화면을 반사하는 거울과 매우 산만합니다.
 
-4. Are the comfortable on your face.
+   리뷰 중 이 문제를 다루는 것으로 보이는 경우는 거의 없습니다.
 
-   Most of the devices rest on your nose like a pair of glasses.
-   That can hurt after a few minutes. Some have straps that go around
-   your head. Others have a 3rd strap that goes over your head. These
-   may or may not help keep the device at the right place.
+4. 당신의 얼굴에 편안한가요?
 
-   It turns out for most (all?) devices, you eyes need to be centered
-   with the lenses. If the lenses are slightly above or below your
-   eyes the image gets out of focus. This can be very frustrating
-   as things might start in focus but 45-60 seconds later the device
-   has shifted up or down 1 millimeter and you suddenly realize you've
-   been struggling to focus on a blurry image.
+   대부분의 장치는 안경처럼 코에 닿습니다.
+   몇 분 후에 아플 수 있습니다. 일부는 주변에 스트랩이 있습니다.
+   너의 머리. 다른 사람들은 머리 위로 가는 3번째 끈이 있습니다. 이것들
+   장치를 올바른 위치에 유지하는 데 도움이 될 수도 있고 도움이 되지 않을 수도 있습니다.
 
-5. Can they support your glasses.
+   대부분의 (모든?) 장치에서 눈이 중앙에 있어야 합니다.
+   렌즈와 함께. 렌즈가 자신보다 약간 높거나 낮은 경우
+   눈 이미지의 초점이 흐려집니다. 이것은 매우 실망 스러울 수 있습니다.
+   일이 초점에서 시작될 수 있지만 45-60초 후에 장치
+   1mm 위 또는 아래로 이동했는데 갑자기
+   흐릿한 이미지에 초점을 맞추려고 애썼다.
 
-   If you wear eye glasses then you'll need to read the reviews to see
-   if a particular headset works well with eye glasses.
+5. 안경을 착용하고 사용할수 있습니까?
 
-I really can't make any recommendations unfortunately. [Google has some
-cheap recommendations made from cardboard](https://vr.google.com/cardboard/get-cardboard/)
-some of them as low as $5 so maybe start there and if you enjoy it
-then consider upgrading. $5 is like the price of 1 coffee so seriously, give it try!
+   안경을 쓰신 분들은 리뷰를 읽어보시고
+   특정 헤드셋이 안경과 잘 매치되는 경우
 
-There are also 3 basic types of devices.
+   정말 아쉽게도 추천을 해드릴 수가 없네요. [구글은 일부
+   판지로 만든 저렴한 추천](https://vr.google.com/cardboard/get-cardboard/)
+   그들 중 일부는 $ 5만큼 낮으므로 거기에서 시작하고 즐길 수 있습니다.
+   그런 다음 업그레이드를 고려하십시오. $5는 커피 1잔 가격과 같으니 꼭 드셔보세요!
 
-1. 3 degrees of freedom (3dof), no input device
+또한 3가지 기본 유형의 장치가 있습니다.
 
-   This is generally the phone style although sometimes you can
-   buy a 3rd party input device. The 3 degrees of freedom
-   mean you can look up/down (1), left/right(2) and you can tilt
-   your head left and right (3).
+1. 3자유도(3dof), 입력 장치 없음
 
-2. 3 degrees of freedom (3dof) with 1 input device (3dof)
+   이것은 일반적으로 전화 스타일이지만 때로는 할 수 있습니다.
+   타사 입력 장치를 구입하십시오. 3 자유도
+   위/아래(1), 왼쪽/오른쪽(2)을 보고 기울일 수 있음을 의미합니다.
+   머리를 좌우로(3).
+   
+2. 1개의 입력 장치(3dof)로 3자유도(3dof)
 
-   This is basically Google Daydream and Oculus GO
+   이것은 기본적으로 Google Daydream과 Oculus GO입니다.
 
-   These also allow 3 degrees of freedom and include a small
-   controller that acts like a laser pointer inside VR.
-   The laser pointer also only has 3 degrees of freedom. The
-   system can tell which way the input device is pointing but
-   it can not tell where the device is.
+   이것들은 또한 3개의 자유도를 허용하고 작은
+   VR 내부에서 레이저 포인터처럼 작동하는 컨트롤러입니다.
+   레이저 포인터의 자유도는 3개뿐입니다. NS
+   시스템은 입력 장치가 가리키는 방향을 알 수 있지만
+   장치가 어디에 있는지 알 수 없습니다.
 
-3. 6 degrees of freedom (6dof) with input devices (6dof)
+3. 입력 장치(6dof)가 있는 6자유도(6dof)
 
-   These are *the real deal* haha. 6 degrees of freedom
-   means not only do these device know which way you are looking
-   but they also know where your head actually is. That means
-   if you move from left to right or forward and back or stand up / sit down
-   the devices can register this and everything in VR moves accordingly.
-   It's spookily and amazingly real feeling. With a good demo
-   you'll be blown away or at least I was and still am.
+   이것들은 *좋은 물건*입니다. 6 자유도
+   이 장치는 사용자가 보고 있는 방향을 알 뿐만 아니라
+   그러나 그들은 또한 당신의 머리가 실제로 어디에 있는지 알고 있습니다. 그 의미는
+   왼쪽에서 오른쪽으로 또는 앞뒤로 움직이거나 일어서거나 앉는 경우
+   장치는 이것을 등록할 수 있고 VR의 모든 것은 그에 따라 움직입니다.
+   으스스하고 놀랍도록 실제적인 느낌입니다. 좋은 데모와 함께
+   당신은 날아갈 것입니다. 아니면 적어도 저는 그랬고 지금도 그렇습니다.
 
-   Further these devices usually include 2 controllers, one
-   for each hand and the system can tell exactly where your
-   hands are and which way they are oriented and so you can
-   manipulate things in VR by just reaching out, touching,
-   pushing, twisting, etc...
+   또한 이러한 장치에는 일반적으로 2개의 컨트롤러가 포함됩니다.
+   각 손에 대해 그리고 시스템은 귀하의 위치를 정확히 알 수 있습니다.
+   손이 어떤 방향으로 향하고 있는지
+   손을 뻗고, 만지고,
+   밀기, 비틀기 등...
 
-   6 degree of freedom devices include the Vive and Vive Pro,
-   the Oculus Rift and Quest, and I believe all of the Windows MR devices.
 
 With all that covered I don't for sure know which devices will work with WebXR.
 I'm 99% sure that most Android phones will work when running Chrome. You may
